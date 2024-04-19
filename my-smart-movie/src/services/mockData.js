@@ -1,4 +1,4 @@
-export const MOVIE_RESPONSE_MOCK = {
+export const MOVIE_RESPONSE_FAKE = {
     "page": 4,
     "results": [
         {
@@ -401,4 +401,314 @@ export const MOVIE_RESPONSE_MOCK = {
     ],
     "total_pages": 43560,
     "total_results": 871193
+}
+
+export const WANTED_MOVIES_FAKE = {
+    "page": 1,
+    "results": [
+        {
+            "adult": false,
+            "backdrop_path": "/s39qbcHd3y4lE2c06Hm8aNnMqwa.jpg",
+            "genre_ids": [
+                27
+            ],
+            "id": 82126,
+            "original_language": "en",
+            "original_title": "Things",
+            "overview": "An impotent husband with a fanatical desire to father children, forces his wife to undergo a dangerous experiment. This results in the birth of a multitude of monstrous THINGS.",
+            "popularity": 2.224,
+            "poster_path": "/vuJhTarmDIhYh2KxP0hWn6azo33.jpg",
+            "release_date": "1989-09-01",
+            "title": "Things",
+            "video": false,
+            "vote_average": 4.2,
+            "vote_count": 26
+        },
+        {
+            "adult": false,
+            "backdrop_path": null,
+            "genre_ids": [
+                27
+            ],
+            "id": 110163,
+            "original_language": "en",
+            "original_title": "Things",
+            "overview": "A woman kidnaps her husband's mistress and tells the mistress two horror stories involving evil things.",
+            "popularity": 2.442,
+            "poster_path": "/xkTpMuHbQd4tuiaBvysTKEycDaf.jpg",
+            "release_date": "1993-10-07",
+            "title": "Things",
+            "video": false,
+            "vote_average": 3.6,
+            "vote_count": 10
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/bQS43HSLZzMjZkcHJz4fGc7fNdz.jpg",
+            "genre_ids": [
+                878,
+                10749,
+                35
+            ],
+            "id": 792307,
+            "original_language": "en",
+            "original_title": "Poor Things",
+            "overview": "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
+            "popularity": 374.479,
+            "poster_path": "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
+            "release_date": "2023-12-07",
+            "title": "Poor Things",
+            "video": false,
+            "vote_average": 7.8,
+            "vote_count": 3091
+        },
+        {
+            "adult": false,
+            "backdrop_path": null,
+            "genre_ids": [],
+            "id": 296693,
+            "original_language": "en",
+            "original_title": "Things",
+            "overview": "Things is a lyrical analysis of the objects we gather around us, split into sections loosely based on the seasons. Rivers’ films are, typically, intimate portrayals of solitary beings or isolated communities. In Things however, he turns his attention to the unexplored objects, thoughts and memories from inside his own home.  The film is a collision of individual fragments of video and sound, which together complete an abstract, humorous and intimate picture.  In the Summer section for example, we witness a squirrel attacking a coconut model of another squirrel. In its attention to small moments, the film is a rumination of the things we gather around us.",
+            "popularity": 0.994,
+            "poster_path": "/tQ4iC8xf3kjkgyJvmtrjUPrlmt0.jpg",
+            "release_date": "2014-09-19",
+            "title": "Things",
+            "video": false,
+            "vote_average": 5.6,
+            "vote_count": 5
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/9qBCO17J7XoUFBPck1JWLBS87s2.jpg",
+            "genre_ids": [
+                18,
+                10749
+            ],
+            "id": 964960,
+            "original_language": "fr",
+            "original_title": "La passion de Dodin Bouffant",
+            "overview": "Set in 1889 France, Dodin Bouffant is a chef living with his personal cook and lover Eugénie. They share a long history of gastronomy and love but Eugénie refuses to marry Dodin, so the food lover decides to do something he has never done before: cook for her.",
+            "popularity": 153.762,
+            "poster_path": "/mmMc875bREz7XXbmSDhfBqcCSBA.jpg",
+            "release_date": "2023-04-11",
+            "title": "The Taste of Things",
+            "video": false,
+            "vote_average": 7.081,
+            "vote_count": 86
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/pluZ6yhOnh4PLFMXrsk0c59x68u.jpg",
+            "genre_ids": [
+                18,
+                10749,
+                10752
+            ],
+            "id": 27098,
+            "original_language": "sv",
+            "original_title": "Lust och fägring stor",
+            "overview": "Stig is a 15-year-old pupil of 37-year-old teacher Viola. He is attracted by her beauty and maturity while she is drawn to him by his youth and innocence, a godsent relief from her drunk and miserable husband.",
+            "popularity": 42.489,
+            "poster_path": "/y1oFNynXrIzlPUe4CXKMR2dpNep.jpg",
+            "release_date": "1995-03-08",
+            "title": "All Things Fair",
+            "video": false,
+            "vote_average": 6.5,
+            "vote_count": 124
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/luA2gGj7b0RuTnnz3VTzDxgQi6a.jpg",
+            "genre_ids": [
+                18
+            ],
+            "id": 35712,
+            "original_language": "fr",
+            "original_title": "Choses secrètes",
+            "overview": "Two young women find themselves struggling to survive in Paris, street-wise Nathalie, a stripper, and naïve Sandrine, a barmaid. Together, they discover that sex can be used to their advantage, and pleasure.",
+            "popularity": 18.45,
+            "poster_path": "/8OVBix4F2qUdb8e128jBu1EJUw0.jpg",
+            "release_date": "2002-10-16",
+            "title": "Secret Things",
+            "video": false,
+            "vote_average": 5.6,
+            "vote_count": 85
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/bxSBOAD8AuMHYMdW3jso9npAkgt.jpg",
+            "genre_ids": [
+                10751,
+                18
+            ],
+            "id": 667257,
+            "original_language": "es",
+            "original_title": "Cosas imposibles",
+            "overview": "Matilde is a woman who, after the death of her husband—a man who constantly abused her—finds her new best friend in Miguel, her young, insecure, disoriented and even dealer neighbor",
+            "popularity": 11.229,
+            "poster_path": "/t2Ew8NZ8Ci2kqmoecZUNQUFDJnQ.jpg",
+            "release_date": "2021-06-17",
+            "title": "Impossible Things",
+            "video": false,
+            "vote_average": 8.4,
+            "vote_count": 371
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/cqwdCT3KiToWHIkhxMCKu6gqJrC.jpg",
+            "genre_ids": [
+                18
+            ],
+            "id": 30363,
+            "original_language": "de",
+            "original_title": "Der Stand der Dinge",
+            "overview": "On location in Portugal, a film crew runs out of film while making their own version of Roger Corman's The Day the World Ended (1956). The producer is nowhere to be found and director Munro attempts to find him in hopes of being able to finish the film.",
+            "popularity": 5.923,
+            "poster_path": "/gHFOZph5GuFcDKe3Xgmrcc2sYwP.jpg",
+            "release_date": "1982-03-22",
+            "title": "The State of Things",
+            "video": false,
+            "vote_average": 6.5,
+            "vote_count": 68
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/vfuzELmhBjBTswXj2Vqxnu5ge4g.jpg",
+            "genre_ids": [
+                18,
+                80,
+                53
+            ],
+            "id": 602269,
+            "original_language": "en",
+            "original_title": "The Little Things",
+            "overview": "Deputy Sheriff Joe \"Deke\" Deacon joins forces with Sgt. Jim Baxter to search for a serial killer who's terrorizing Los Angeles. As they track the culprit, Baxter is unaware that the investigation is dredging up echoes of Deke's past, uncovering disturbing secrets that could threaten more than his case.",
+            "popularity": 31.966,
+            "poster_path": "/tLO1aD1ghdtVMT32z2sRmzgYKYd.jpg",
+            "release_date": "2021-01-28",
+            "title": "The Little Things",
+            "video": false,
+            "vote_average": 6.334,
+            "vote_count": 2334
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/azkp4brPsmzJiyKw5ExkPDrVpWA.jpg",
+            "genre_ids": [
+                35,
+                18,
+                10749
+            ],
+            "id": 8434,
+            "original_language": "fr",
+            "original_title": "Embrassez qui vous voudrez",
+            "overview": "Two couple of friends, one very rich, the other almost homeless, decide to go on Holiday. Julie, a single mother, joins them too. Once at seaside, it starts a complicate love cross among them that will involve also a transsexual, a jealous brother, a Latin Lover and another nervous stressed couple. Not to mention about the daughter of one of them that is secretly in Chicago with one of her father's employees... At the end of the summer, all of them will join the same party...",
+            "popularity": 8.432,
+            "poster_path": "/72Lff6nnP1qDM3n5R3G6QxG9R74.jpg",
+            "release_date": "2002-03-04",
+            "title": "Summer Things",
+            "video": false,
+            "vote_average": 5.9,
+            "vote_count": 87
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/yvPbncYhMu9FfTjDhq0N5lgnVkO.jpg",
+            "genre_ids": [
+                35,
+                10749,
+                18
+            ],
+            "id": 4951,
+            "original_language": "en",
+            "original_title": "10 Things I Hate About You",
+            "overview": "On the first day at his new school, Cameron instantly falls for Bianca, the gorgeous girl of his dreams. The only problem is that Bianca is forbidden to date until her ill-tempered, completely un-dateable older sister Kat goes out, too. In an attempt to solve his problem, Cameron singles out the only guy who could possibly be a match for Kat: a mysterious bad boy with a nasty reputation of his own.",
+            "popularity": 57.925,
+            "poster_path": "/ujERk3aKABXU3NDXOAxEQYTHe9A.jpg",
+            "release_date": "1999-03-30",
+            "title": "10 Things I Hate About You",
+            "video": false,
+            "vote_average": 7.582,
+            "vote_count": 7734
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/sbJZTwa4VcJ6OH3QBWJLpqFZFxv.jpg",
+            "genre_ids": [
+                10749,
+                35,
+                18
+            ],
+            "id": 56366,
+            "original_language": "it",
+            "original_title": "Dramma della gelosia (tutti i particolari in cronaca)",
+            "overview": "Construction worker Oreste and young fiancee Adelaide meet Nello, cook in a pizzeria. This love triangle often go to communist rallies, and enjoy the filthy beach of Ostia. Will the hostile environment leave a way to jealousy?",
+            "popularity": 7.079,
+            "poster_path": "/A8bdxnXRtNFKtQqiLEeEKoTLM0Z.jpg",
+            "release_date": "1970-01-18",
+            "title": "A Drama of Jealousy (and Other Things)",
+            "video": false,
+            "vote_average": 7.3,
+            "vote_count": 170
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/73uxE5PRXsnT94E9uCiAMaUYuq2.jpg",
+            "genre_ids": [
+                14,
+                10749
+            ],
+            "id": 672647,
+            "original_language": "en",
+            "original_title": "The Map of Tiny Perfect Things",
+            "overview": "Two teenagers trapped in an endless time loop set out to find all the tiny things that make that one day perfect.",
+            "popularity": 21.449,
+            "poster_path": "/6y3ev0rJFbHA1hU22UPmmfzBjrG.jpg",
+            "release_date": "2021-02-12",
+            "title": "The Map of Tiny Perfect Things",
+            "video": false,
+            "vote_average": 7.1,
+            "vote_count": 710
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/fRYNlAhtf9B7Qh9XnqMV40vUKAl.jpg",
+            "genre_ids": [
+                35,
+                18
+            ],
+            "id": 8074,
+            "original_language": "fr",
+            "original_title": "2 ou 3 choses que je sais d'elle",
+            "overview": "As the city of Paris and the French people grow in consumer culture, a housewife living in a high-rise apartment with her husband and two children takes to prostitution to help pay the bills.",
+            "popularity": 8.985,
+            "poster_path": "/w1LO1SIrpA4GCjK3ysANr7F3eAN.jpg",
+            "release_date": "1967-03-17",
+            "title": "2 or 3 Things I Know About Her",
+            "video": false,
+            "vote_average": 6.3,
+            "vote_count": 181
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/fqb1odEjdxDrwicf6DZVCKZvrAr.jpg",
+            "genre_ids": [
+                35
+            ],
+            "id": 546630,
+            "original_language": "de",
+            "original_title": "100 Dinge",
+            "overview": "Best friends Toni and Paul decide to relinquish all of their belongings for 100 days, whereby they receive one of their items back on each day. During this challenge the two realize, that the only thing they cannot be without is their friendship. A story about contemporary materialism and the quest for the truly important things in life.",
+            "popularity": 13.067,
+            "poster_path": "/yTfpEmMitPaOOmzRZ3NGvLhamz6.jpg",
+            "release_date": "2018-12-06",
+            "title": "100 Things",
+            "video": false,
+            "vote_average": 6.673,
+            "vote_count": 280
+        },  
+    ],
+    "total_pages": 62,
+    "total_results": 1224
 }

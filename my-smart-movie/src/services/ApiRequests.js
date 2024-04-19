@@ -1,18 +1,24 @@
-import axios from "axios";
-
-const apiKey = process.env.REACT_APP_API_KEY;
+import { MOVIE_RESPONSE_FAKE, WANTED_MOVIES_FAKE } from "./mockData";
+import apiTMDB from "./apiInterceptor";
 
 export const getMovieList = async () => {
-  const response = await axios.get(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
-  );
+  const response = await apiTMDB.get("/movie/popular");
   return response.data;
+
+  // return Promise.resolve(MOVIE_RESPONSE_FAKE)
 };
 
 export const getConfiguration = async () => {
-  const response = await axios.get(
-    `https://api.themoviedb.org/3/configuration?api_key=${apiKey}`
-  );
+  const response = await apiTMDB.get("/configuration");
   return response.data;
 };
-// TODO: take a look over interceptors
+
+export const getWantedMovies = async (specificWord) => {
+  const response = await apiTMDB.get("/search/movie",
+    {params: { query: specificWord, include_adult: true }}
+  );
+
+  return response.data;
+  // return Promise.resolve(WANTED_MOVIES_FAKE)
+};
+
