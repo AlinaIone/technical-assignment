@@ -22,3 +22,18 @@ export const getWantedMovies = async (specificWord) => {
   // return Promise.resolve(WANTED_MOVIES_FAKE)
 };
 
+
+export const getMovieDetails = async (movieId) => {
+  const response = await apiTMDB.get(`/movie/${movieId}`)
+
+  return response.data
+   // return Promise.resolve(WANTED_MOVIES_FAKE)
+}
+
+export const getMovieGenre = async () => {
+  const response = await apiTMDB.get(`/genre/movie/list`)
+
+  return response.data
+   // return Promise.resolve(WANTED_MOVIES_FAKE)
+}
+

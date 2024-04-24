@@ -18,7 +18,7 @@ const MovieList = ({ movies }) => {
               id={movie.id}
               title={movie.title}
               image={`${baseUrl}w300${movie.poster_path}`}
-              descriprion={movie.overview}
+              genres={movie.genre_ids}
             />
           );
         })

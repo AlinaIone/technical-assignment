@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { getConfiguration, getMovieList } from "./services/ApiRequests";
-import MovieList from "./components/MovieList";
+import { getConfiguration, getMovieGenre, getMovieList } from "./services/ApiRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { storeActions } from "./store/store";
+import { useNavigation, Outlet } from "react-router-dom";
+import MainNavigation from "./components/MainNavigation";
 
 const Workflow = () => {
-
+const navigation = useNavigation();
   const dispatch = useDispatch();
   const movieList = useSelector((store) => store.movies.movies);
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     const doConfigurationRequest = async () => {
-      const result = await getConfiguration();
-      dispatch(storeActions.configuration.setBaseUrl({baseUrl: result.images.base_url}));
+      const [baseUrl, genres] = await Promise.all([getConfiguration(), getMovieGenre()]);
+      dispatch(storeActions.configuration.setBaseUrl({baseUrl: baseUrl.images.base_url}));
+      dispatch(storeActions.configuration.setGenre(genres.genres));
       setIsInitialized(true);
     };
 
@@ -38,7 +40,16 @@ const Workflow = () => {
     }
   }, [isInitialized, dispatch, movieList]);
 
-  return <>{movieList && <MovieList movies={movieList} />}</>;
+  return <>  
+ <div>Aici suntem in workflow</div>
+ <MainNavigation/>
+ {navigation.state === "loading" ? 
+        <p>Loading...</p> : 
+       ( <main>
+          <Outlet />
+        </main>)
+      }
+    </>;
 };
 
 export default Workflow;

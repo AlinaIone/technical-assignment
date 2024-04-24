@@ -1,13 +1,32 @@
 import Workflow from "./Workflow";
-// import MovieList from "./components/MovieList";
-import { Provider } from "react-redux";
-import { reduxStore } from "./store/store";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
+import MovieDetails from "./pages/MovieDetails";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Workflow />,
+    // Add an error element
+    children: [
+      { index: true, element: <Home /> },
+      {
+        path: "favorites",
+        element: <Favorites />,
+      },
+      {
+        path: "movies/:movieId",
+        element: <MovieDetails />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <Provider store={reduxStore}>
-      <Workflow />
-    </Provider>
+    <RouterProvider router={router}/>
+
   );
 }
 
