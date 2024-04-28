@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getConfiguration, getMovieGenre, getMovieList } from "./services/ApiRequests";
+import React, { useCallback, useEffect, useState } from "react";
+import { getConfiguration, getFavoriteMovies, getMovieGenre, getMovieList } from "./services/ApiRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { storeActions } from "./store/store";
 import { useNavigation, Outlet } from "react-router-dom";
@@ -8,7 +8,8 @@ import MainNavigation from "./components/MainNavigation";
 const Workflow = () => {
 const navigation = useNavigation();
   const dispatch = useDispatch();
-  const movieList = useSelector((store) => store.movies.movies);
+  const movieInfo = useSelector((store) => store.movies);
+  const {movies, favoriteMovies} = movieInfo;
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
@@ -24,21 +25,39 @@ const navigation = useNavigation();
     }
   }, [dispatch, isInitialized]);
 
-  useEffect(() => {
-    const doMovieRequest = async () => {
-      try {
-        const movies = await getMovieList();
-        dispatch(storeActions.movies.setMovies(movies.results));
-        // todo: implement an error handler
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  // fetch movies for the home page
+   const doMovieRequest = useCallback(async (page) => {
+    try {
+      const movies = await getMovieList(page);
+      dispatch(storeActions.movies.setMovies(movies.results));
+      // dispatch(storeActions.pagination.setActivePage(movies.page))
+      dispatch(storeActions.pagination.setTotalPages(movies.total_pages))
+      // todo: implement an error handler
+    } catch (error) {
+      console.log(error);
+    }
+  },[dispatch]) 
 
-    if (!movieList && isInitialized) {
+
+  useEffect(() => {
+    if (!movies && isInitialized) {
       doMovieRequest();
     }
-  }, [isInitialized, dispatch, movieList]);
+  }, [isInitialized, movies, doMovieRequest]);
+  
+
+  const doFavoritesRequest =  useCallback(async () => {
+      const favMovies = await getFavoriteMovies();
+      dispatch(storeActions.movies.setFavoriteMovies(favMovies.results));
+      console.log('avem favorite initial fetch')
+    },[dispatch]);
+
+    
+  useEffect(() => {
+    if(!favoriteMovies && isInitialized)
+   doFavoritesRequest()
+  }, [doFavoritesRequest, favoriteMovies, isInitialized ]);
+
 
   return <>  
  <div>Aici suntem in workflow</div>
@@ -46,7 +65,7 @@ const navigation = useNavigation();
  {navigation.state === "loading" ? 
         <p>Loading...</p> : 
        ( <main>
-          <Outlet />
+          <Outlet context={doMovieRequest}/>
         </main>)
       }
     </>;

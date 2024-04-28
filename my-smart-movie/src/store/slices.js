@@ -6,21 +6,22 @@ export const configurationSlice = createSlice({
   reducers: {
     setBaseUrl: (state, action) => {
       state.baseUrl = action.payload.baseUrl;
-      console.log(state.baseUrl);
     },
     setGenre: (state, action) => {
       state.genres = action.payload;
-      console.log(state.genres);
     },
   },
 });
 
 export const moviesSlice = createSlice({
   name: "movies",
-  initialState: { movies: null },
+  initialState: { movies: null, favoriteMovies: [] },
   reducers: {
     setMovies: (state, action) => {
       state.movies = action.payload;
+    },
+    setFavoriteMovies: (state, action) => {
+      state.favoriteMovies = action.payload;
     },
   },
 });
@@ -34,3 +35,16 @@ export const movieDetailsSlice = createSlice({
     },
   },
 });
+
+export const paginationSlice = createSlice({
+  name: "pagination",
+  initialState: { activePage: 1, totalPages: null },
+  reducers: {
+    setActivePage: (state, action) => {
+      state.activePage = action.payload;
+    },
+    setTotalPages: (state, action) => {
+      state.totalPages = action.payload;
+    },
+  },
+})

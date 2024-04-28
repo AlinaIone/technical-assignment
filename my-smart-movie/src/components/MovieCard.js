@@ -1,37 +1,38 @@
 import React from "react";
 import Card from "@mui/material/Card";
-import {
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-  Grid,
-  CardActionArea,
-} from "@mui/material";
+import { CardContent, CardMedia, Typography, Grid, CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { getMovieDetails } from "../services/ApiRequests";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { storeActions } from "../store/store";
 import { useMovieGenresHandling } from "../hooks/useMovieGenresHandling";
+import FavoriteButton from "./FavoriteButton";
 
 const MovieCard = ({ id, title, image, genres }) => {
   const navigate = useNavigate();
-  const dispatchDetails = useDispatch();
+  const dispatch = useDispatch();
   const genreDef = useMovieGenresHandling();
+  const favoriteMovies = useSelector((state) => state.movies.favoriteMovies); 
 
   const goToDetailsPage = async () => {
-    const details = await getMovieDetails(id);
-    dispatchDetails(storeActions.movieDetails.setMovieDetails(details));
-    navigate(`movies/${id}`);
+    try {
+      const details = await getMovieDetails(id);
+      dispatch(storeActions.movieDetails.setMovieDetails(details));
+      navigate(`details/${id}`);
+    } catch (error) {
+      //! cum sa handle the error - Handle the error
+      console.error("An error occurred while fetching movie details:", error);
+      // You can show an error message to the user or handle it in any other way
+    }
   };
 
+  const isFavOrNot = favoriteMovies ? favoriteMovies.map(movie => movie.id).includes(id): false
+
   return (
-    <Card sx={{ maxWidth: 250, margin: "0.5rem" }}>
+    <Card sx={{ width: 250, margin: "0.5rem", position:'relative' }}>
       <CardActionArea onClick={() => goToDetailsPage()}>
         <CardMedia
           sx={{ height: 350 }}
-          // style={{ display: 'block', margin: 'auto' }}
           image={image}
           title={title}
         />
@@ -51,11 +52,10 @@ const MovieCard = ({ id, title, image, genres }) => {
             ))}
           </Grid>
         </CardContent>
-        <CardActions>
-          <Button size="small">Details</Button>
-          <Button size="small">Add to favorite</Button>
-        </CardActions>
       </CardActionArea>
+        <div style={{ position: 'absolute', top: 10, right: 10 }}>
+          <FavoriteButton movieId={id} isFav={isFavOrNot}/>
+        </div>
     </Card>
   );
 };
