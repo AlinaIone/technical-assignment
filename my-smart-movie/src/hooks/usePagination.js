@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { range } from "../utils/rangeFunction";
+import { range } from "../utils/helpFunctions";
 
 export const usePagination = (
   activePage,

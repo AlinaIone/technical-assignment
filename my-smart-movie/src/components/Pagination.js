@@ -2,26 +2,30 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { usePagination } from "../hooks/usePagination";
 import { storeActions } from "../store/store";
-import { Grid, IconButton, } from "@mui/material";
+import { Button, Grid, IconButton, } from "@mui/material";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 
 const activePageStyle = {
-    color: 'green',
-    fontWeight: "bold"
+    color: '#52f2c8',
+    fontWeight: "bold"    
 }
 const pageStyle={
-    color: 'gray',
+  color: "#e6e6fa",
     display: 'inline',
-    padding:'0.75rem',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    fontSize: '1.1rem',
 }
 const paginationRoot={
-    backgroundColor: "lightGreen",
-    padding: "1rem",
-    boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)"
+    padding: "2rem",
+    marginBottom:'1rem',
+    flexWrap: "nowrap" ,
+}
+const iconButtons={
+   color: '#e6e6fa',
+   fontSize: '1.1rem',
 }
 
 // PAGINATION PARAMETERS 
@@ -32,7 +36,6 @@ const Pagination = ({maxNrOfPagesVisible = 5, siblingCount = 2, totalPages = 500
   const dispatch = useDispatch();
 
   const paginationRange = usePagination(activePage, siblingCount, maxNrOfPagesVisible, totalPages);
-
 
   const handlePage = (newPageState) => {
     dispatch(storeActions.pagination.setActivePage(newPageState));
@@ -60,35 +63,12 @@ const Pagination = ({maxNrOfPagesVisible = 5, siblingCount = 2, totalPages = 500
   };
 
   return (
-    <Grid
-      item
-      container
-      justifyContent="center"
-      alignItems="center"
-      style={paginationRoot}
-    >
-      <Grid
-        item
-        container
-        md={8}
-        justifyContent="center"
-        direction="row"
-        alignItems="center"
-        style={{ flexWrap: "nowrap" }}
-      >
-        <IconButton
-          onClick={handleFirstPageButtonClick}
-          disabled={activePage === 1}
-          aria-label="first-page"
-        >
+      <Grid item container xs={12} justifyContent="center" direction="row" alignItems="center" style={paginationRoot}  >
+        <IconButton onClick={handleFirstPageButtonClick} disabled={activePage === 1} aria-label="first-page"  sx={iconButtons}>
           <FirstPageIcon />
         </IconButton>
 
-        <IconButton
-          onClick={() => handleBackButtonClick(activePage)}
-          disabled={activePage === 1}
-          aria-label="prev-page"
-        >
+        <IconButton  onClick={() => handleBackButtonClick(activePage-1)} disabled={activePage === 1} aria-label="prev-page"  sx={iconButtons}>
           <KeyboardArrowLeftIcon />
         </IconButton>
 
@@ -98,24 +78,18 @@ const Pagination = ({maxNrOfPagesVisible = 5, siblingCount = 2, totalPages = 500
               {pageNumber}
             </Grid>
           ) : (
-            <Grid
-              item
-              key={pageNumber}
-              style={
-                activePage === pageNumber
-                  ? { ...pageStyle, ...activePageStyle }
-                  : pageStyle
-              }
-              onClick={() => handlePage(pageNumber)}
-            >
-              {pageNumber}
-            </Grid>
+              <Button key={pageNumber} style={activePage === pageNumber  ? { ...pageStyle, ...activePageStyle } : pageStyle}
+              disabled={activePage === pageNumber}
+              onClick={() => handlePage(pageNumber)}>
+                 {pageNumber}
+              </Button>
           );
         })}
         <IconButton
-          onClick={() => handleNextButtonClick(activePage)}
+          onClick={() => handleNextButtonClick(activePage+1)}
           disabled={activePage >= totalPages}
           aria-label="next-page"
+          sx={iconButtons}
         >
           <KeyboardArrowRightIcon />
         </IconButton>
@@ -124,11 +98,11 @@ const Pagination = ({maxNrOfPagesVisible = 5, siblingCount = 2, totalPages = 500
           onClick={handleLastPageButtonClick}
           disabled={activePage >= totalPages}
           aria-label="last-page"
+          sx={iconButtons}
         >
           <LastPageIcon />
         </IconButton>
       </Grid>
-    </Grid>
   );
 };
 

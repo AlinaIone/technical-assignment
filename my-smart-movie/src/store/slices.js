@@ -15,7 +15,7 @@ export const configurationSlice = createSlice({
 
 export const moviesSlice = createSlice({
   name: "movies",
-  initialState: { movies: null, favoriteMovies: [] },
+  initialState: { movies: null, favoriteMovies: null },
   reducers: {
     setMovies: (state, action) => {
       state.movies = action.payload;

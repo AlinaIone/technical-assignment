@@ -9,9 +9,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={reduxStore}>
-    <App />
+      <App />
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode> 
 );
 
 

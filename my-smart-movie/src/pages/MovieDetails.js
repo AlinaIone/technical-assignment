@@ -1,61 +1,69 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import {
-  Container,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  Skeleton,
-  IconButton,
-} from "@mui/material";
-import Favorite from "@mui/icons-material/Favorite";
+import { Container, Typography, Grid,  Card, CardContent, CardMedia} from "@mui/material";
+import FavoriteButton from "../components/FavoriteButton";
+import { formatDate, roundToOneDecimal } from "../utils/helpFunctions";
+import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const MovieDetails = () => {
-  const params = useParams();
   const details = useSelector((store) => store.movieDetails.movieDetails);
   const baseUrl = useSelector((store) => store.configuration.baseUrl);
-  console.log(params, details);
+  const favoriteMovies = useSelector((state) => state.movies.favoriteMovies);
+
   const imageUrl = `${baseUrl}original${
     details.backdrop_path ? details.backdrop_path : details.poster_path
   }`;
 
+  const isFavOrNot = favoriteMovies
+    ? favoriteMovies.map((movie) => movie.id).includes(details.id)
+    : false;
+
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []); 
+
+
   return (
-    <Container maxWidth="md" sx={{ marginTop: 4 }}>
-      <Typography variant="h3" gutterBottom>{details.title}</Typography>
-      <Grid container spacing={2}>
+    <Container maxWidth="md" sx={{ padding: '2rem'}}>
+      <Typography variant="h3" gutterBottom sx={{marginBottom:'1.5rem', color: "#e6e6fa",}}>{details.title}</Typography>
+      <Grid container spacing={2} >
         <Grid item xs={12} md={9}>
           <Card position="relative">
             <CardMedia
               component="img"
               image={imageUrl}
               title={details.title}
-              //   sx={{ height: 400, backgroundSize: 'contain' }}
             />
           </Card>
         </Grid>
-        <Grid item xs={12} md={3}>
-          <Card>
+        <Grid container item xs={12} md={3} flexDirection='column' justifyContent='space-between' gap={3} sx={{color:'#e6e6fa'}}>
+          <Card sx={{ order: { xs: 2, md: 1 }, backgroundColor:'#9E796C', color:'#e6e6fa'}}>
             <CardContent>
-              <Typography variant="subtitle1">Vote Averange</Typography>
-              <Typography variant="body1">{details.vote_average}</Typography>
-              <Typography variant="subtitle1" gutterBottom>Release Date</Typography>
-              <Typography variant="body1">{details.release_date}</Typography>
-              <Typography variant="subtitle1" gutterBottom>Genre</Typography>
-              <Grid container>
+            <Grid container item flexDirection='column' alignItems='center' justifyContent='center' gap={1} marginBottom={2}>
+              <ThumbsUpDownIcon />
+              <Typography variant="body1">Vote Average: {roundToOneDecimal(details.vote_average) } </Typography>
+            </Grid>
+            <Grid container item flexDirection='column' alignItems='center' justifyContent='center' gap={1}>
+              <DateRangeIcon/>
+              <Typography variant="body1" gutterBottom>Release: {formatDate(details.release_date) }</Typography>
+            </Grid>
+            <Grid container item alignItems='center' justifyContent='center' paddingTop={4}>
                 {details.genres.map((genre) => (
                   <Typography key={genre.id} variant="body1" style={{ marginRight: "10px" }}>{genre.name}</Typography>
                 ))}
-              </Grid>
+            </Grid >          
             </CardContent>
+          </Card>
+          <Card sx={{ order: { xs: 1, md: 2 }, backgroundColor:'#416961', color:'#e6e6fa' }}>
+          <FavoriteButton nativeButton movieId={details.id} isFav={isFavOrNot}/>
           </Card>
         </Grid>
         <Grid item xs={12}>
-          <Card>
+          <Card  sx={{backgroundColor:'#9E796C', color:'#e6e6fa', p:2}}>
             <CardContent>
-              <Typography variant="h5" gutterBottom>Description</Typography>
+              <Typography variant="h5" gutterBottom fontWeight='bold'>About</Typography>
               <Typography variant="body1" paragraph> {details.overview}</Typography>
             </CardContent>
           </Card>

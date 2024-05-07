@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { getConfiguration, getFavoriteMovies, getMovieGenre, getMovieList } from "./services/ApiRequests";
+import { getConfiguration, getFavoriteMovies, getMovieGenre, getMovieList } from "./services/apiRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { storeActions } from "./store/store";
 import { useNavigation, Outlet } from "react-router-dom";
 import MainNavigation from "./components/MainNavigation";
+import Footer from "./components/Footer";
 
 const Workflow = () => {
 const navigation = useNavigation();
@@ -30,7 +31,6 @@ const navigation = useNavigation();
     try {
       const movies = await getMovieList(page);
       dispatch(storeActions.movies.setMovies(movies.results));
-      // dispatch(storeActions.pagination.setActivePage(movies.page))
       dispatch(storeActions.pagination.setTotalPages(movies.total_pages))
       // todo: implement an error handler
     } catch (error) {
@@ -54,21 +54,24 @@ const navigation = useNavigation();
 
     
   useEffect(() => {
-    if(!favoriteMovies && isInitialized)
+    if(!favoriteMovies )
    doFavoritesRequest()
-  }, [doFavoritesRequest, favoriteMovies, isInitialized ]);
+  }, [doFavoritesRequest, favoriteMovies ]);
 
 
-  return <>  
- <div>Aici suntem in workflow</div>
- <MainNavigation/>
- {navigation.state === "loading" ? 
-        <p>Loading...</p> : 
-       ( <main>
-          <Outlet context={doMovieRequest}/>
-        </main>)
-      }
-    </>;
+  return (
+    <div >
+      <MainNavigation />
+      {navigation.state === "loading" ? (
+        <p>Loading...</p>
+      ) : (
+        <main style={{ position: "relative", minHeight:' 100%' }}>
+          <Outlet context={doMovieRequest} />
+        </main>
+      )}
+      <Footer />
+    </div>
+  );
 };
 
 export default Workflow;
