@@ -2,22 +2,62 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const configurationSlice = createSlice({
   name: "configuration",
-  initialState: { baseUrl: null },
+  initialState: { baseUrl: null, genres: null },
   reducers: {
     setBaseUrl: (state, action) => {
-      console.log("we are fetching baseurl", action.payload.baseUrl);
       state.baseUrl = action.payload.baseUrl;
+    },
+    setGenre: (state, action) => {
+      state.genres = action.payload;
     },
   },
 });
 
 export const moviesSlice = createSlice({
   name: "movies",
-  initialState: { movies: null },
+  initialState: { movies: null, favoriteMovies: null },
   reducers: {
     setMovies: (state, action) => {
-      console.log("we are fetching movies", action.payload);
       state.movies = action.payload;
+    },
+    setFavoriteMovies: (state, action) => {
+      state.favoriteMovies = action.payload;
     },
   },
 });
+
+export const movieDetailsSlice = createSlice({
+  name: "movieDetails",
+  initialState: { movieDetails: null },
+  reducers: {
+    setMovieDetails: (state, action) => {
+      state.movieDetails = action.payload;
+    },
+  },
+});
+
+export const paginationSlice = createSlice({
+  name: "pagination",
+  initialState: { activePage: 1, totalPages: null },
+  reducers: {
+    setActivePage: (state, action) => {
+      state.activePage = action.payload;
+    },
+    setTotalPages: (state, action) => {
+      state.totalPages = action.payload;
+    },
+  },
+})
+
+export const thereAreErrorsSlice =  createSlice({
+  name: "errors",
+  initialState: { errors: [],  },
+  reducers: {
+    setError: (state, action) => {
+      state.errors.push(action.payload);
+    },
+    clearError: (state) => {
+      state.errors = []
+    },
+  },
+})

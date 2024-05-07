@@ -1,20 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { getConfiguration, getMovieList } from "./services/ApiRequests";
-import MovieList from "./components/MovieList";
+import React, { useCallback, useEffect, useState } from "react";
+import { getConfiguration, getFavoriteMovies, getMovieGenre, getMovieList } from "./services/apiRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { storeActions } from "./store/store";
+import { useNavigation, Outlet } from "react-router-dom";
+import MainNavigation from "./components/MainNavigation";
+import Footer from "./components/Footer";
+import DisplayError from "./pages/DisplayError";
 
 const Workflow = () => {
-
+const navigation = useNavigation();
   const dispatch = useDispatch();
-  const movieList = useSelector((store) => store.movies.movies);
+  const movieInfo = useSelector((store) => store.movies);
+  const thereAreErrors = useSelector(store=> store.errors.errors)
+  const {movies, favoriteMovies} = movieInfo;
   const [isInitialized, setIsInitialized] = useState(false);
 
+
   useEffect(() => {
+    dispatch(storeActions.errors.clearError())
     const doConfigurationRequest = async () => {
-      const result = await getConfiguration();
-      dispatch(storeActions.configuration.setBaseUrl({baseUrl: result.images.base_url}));
+      try{
+      const [baseUrl, genres] = await Promise.all([getConfiguration(), getMovieGenre()]);
+      dispatch(storeActions.configuration.setBaseUrl({baseUrl: baseUrl.images.base_url}));
+      dispatch(storeActions.configuration.setGenre(genres.genres));
       setIsInitialized(true);
+      } catch(error){
+      console.log('Error', error.response.data)
+      dispatch(storeActions.errors.setError({status: error.response.status, message:'An error occurred while loading movies.'}))
+      }   
     };
 
     if (!isInitialized) {
@@ -22,23 +35,63 @@ const Workflow = () => {
     }
   }, [dispatch, isInitialized]);
 
-  useEffect(() => {
-    const doMovieRequest = async () => {
-      try {
-        const movies = await getMovieList();
-        dispatch(storeActions.movies.setMovies(movies.results));
-        // todo: implement an error handler
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  // fetch movies for the home page
+   const doMovieRequest = useCallback(async (page) => {
+    dispatch(storeActions.errors.clearError())
+    try {
+      const movies = await getMovieList(page);
+      dispatch(storeActions.movies.setMovies(movies.results));
+      dispatch(storeActions.pagination.setTotalPages(movies.total_pages))
+    } catch (error) {
+      console.log('Error', error.response.data)
+      dispatch(storeActions.errors.setError({status: error.response.status, message:'An error occurred while loading movies.'}))
+    }
+  },[dispatch]) 
 
-    if (!movieList && isInitialized) {
+
+  useEffect(() => {
+    if (!movies && isInitialized) {
       doMovieRequest();
     }
-  }, [isInitialized, dispatch, movieList]);
+  }, [isInitialized, movies, doMovieRequest]);
+  
 
-  return <>{movieList && <MovieList movies={movieList} />}</>;
+  const doFavoritesRequest =  useCallback(async () => {
+    dispatch(storeActions.errors.clearError())
+    try{
+      const favMovies = await getFavoriteMovies();
+      dispatch(storeActions.movies.setFavoriteMovies(favMovies.results));
+    }catch(error){
+      console.log('Error', error.response.data)
+      dispatch(storeActions.errors.setError({status: error.response.status, message:'An error occurred while loading movies.'}))
+    }
+    },[dispatch]);
+
+    
+  useEffect(() => {
+    if(!favoriteMovies ) doFavoritesRequest()
+  }, [doFavoritesRequest, favoriteMovies ]);
+
+
+  return (
+    <>
+      {thereAreErrors.length !== 0 ? (
+        <DisplayError />
+      ) : (
+        <div>
+          <MainNavigation />
+          {navigation.state === "loading" ? (
+            <p>Loading...</p>
+          ) : (
+            <main style={{ position: "relative", minHeight: " 100%" }}>
+              <Outlet context={doMovieRequest} />
+            </main>
+          )}
+          <Footer />
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Workflow;
