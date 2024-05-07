@@ -6,7 +6,7 @@ const rootStyle = {
   color: "#fff",
   padding: "15px",
   textAlign: "center",
-  marginTop: '1rem'
+  paddingTop: '1rem'
 };
 
 const Footer = () => {

@@ -28,14 +28,12 @@ const MovieCard = ({ id, title, image, genres }) => {
     try {
       const details = await getMovieDetails(id);
       dispatch(storeActions.movieDetails.setMovieDetails(details));
-     if(window.location.pathname.includes('favorites')){
-      navigate(`/movies/details/${id}`);
-     }else{
-       navigate(`details/${id}`);
-     }
-     
+       navigate(`details/${id}`);  
+
+
     } catch (error) {
-      console.error("An error occurred while fetching movie details:", error);
+      console.log('Error', error.response.data)
+      dispatch(storeActions.errors.setError({status: error.response.status, message:'An error occurred while fetching movie details'}))
     }
   };
 

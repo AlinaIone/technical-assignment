@@ -87,7 +87,6 @@ const MovieFilters = () => {
     };
     const filteredMovies = await getFilteredMovies(filteringParams);
     dispatchMovies(storeActions.movies.setMovies(filteredMovies.results));
-    console.log(filteredMovies);
   };
 
   const handleResetFilters = async () => {
@@ -116,7 +115,6 @@ const MovieFilters = () => {
     }
   };
 
-  console.log({ releaseYear, errorYear });
 
   return (
     <Grid container item sx={rootFilterStyle} justifyContent="flex-end" gap={1}>

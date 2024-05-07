@@ -1,19 +1,15 @@
-import { MOVIE_RESPONSE_FAKE, WANTED_MOVIES_FAKE } from "./mockData";
 import apiTMDB from "./apiInterceptor";
 
 
 export const handleLogin = async () => {
   const response = await apiTMDB.get("/authentication/guest_session/new");
-  console.log("Raaaaaaspuuuns",response)
   return response.data;
 };
 
 export const getMovieList = async (page=1) => {
   const response = await apiTMDB.get("/movie/popular",{params:{page}});
-  return response.data;
-
-  // return Promise.resolve(MOVIE_RESPONSE_FAKE)
-};
+  return response.data
+}
 
 export const getConfiguration = async () => {
   const response = await apiTMDB.get("/configuration");
@@ -24,16 +20,12 @@ export const getWantedMovies = async (specificWord) => {
   const response = await apiTMDB.get("/search/movie",
     {params: { query: specificWord, include_adult: false }}
   );
-
   return response.data;
-  // return Promise.resolve(WANTED_MOVIES_FAKE)
 };
 
 export const getMovieDetails = async (movieId) => {
   const response = await apiTMDB.get(`/movie/${movieId}`)
-
   return response.data
-   // return Promise.resolve(WANTED_MOVIES_FAKE)
 }
 
 export const getMovieGenre = async () => {
@@ -45,10 +37,7 @@ export const getMovieGenre = async () => {
 
 export const getFilteredMovies = async (params) => {
   const response = await apiTMDB.get(`/discover/movie`, {params})
-
-
   return response.data
-   // return Promise.resolve(WANTED_MOVIES_FAKE)
 }
 
 export const toggleFavorite = async (movieId, isFavorite, accountId = "21215400") => {
@@ -69,7 +58,6 @@ export const toggleFavorite = async (movieId, isFavorite, accountId = "21215400"
     { params: { session_id: "1fa03249f7802528e1ac89c630f206d94ae230e3" } },
     
   );
-  console.log(response.data)
   return response.data
 };
 
@@ -77,7 +65,6 @@ export const getFavoriteMovies  = async (accountId = "21215400") => {
   const response = await apiTMDB.get(`/account/${accountId}/favorite/movies`, {
     params: { session_id: "1fa03249f7802528e1ac89c630f206d94ae230e3" },
   });
-
   return response.data
 };
 

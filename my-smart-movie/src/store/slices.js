@@ -48,3 +48,16 @@ export const paginationSlice = createSlice({
     },
   },
 })
+
+export const thereAreErrorsSlice =  createSlice({
+  name: "errors",
+  initialState: { errors: [],  },
+  reducers: {
+    setError: (state, action) => {
+      state.errors.push(action.payload);
+    },
+    clearError: (state) => {
+      state.errors = []
+    },
+  },
+})

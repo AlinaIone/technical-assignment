@@ -91,7 +91,7 @@ const MainNavigation = () => {
             <Button
               size="large"
               color="inherit"
-              onClick={() => navigate("/movies")}
+              onClick={() => navigate("/")}
               sx={buttonStyle}
             >
               Home
@@ -150,7 +150,7 @@ const MainNavigation = () => {
           <ListItemButton
             sx={{ "&:hover": { backgroundColor: "#516077" } }}
             component={NavLink}
-            to="/movies"
+            to="/"
             onClick={toggleDrawer(false)}
           >
             <ListItemText primary="Home" />

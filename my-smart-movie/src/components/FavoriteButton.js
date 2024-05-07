@@ -36,6 +36,7 @@ const FavoriteButton = ({ movieId, isFav, nativeButton}) => {
 
   const handleToggleToFavorite = async (id, isFavParam) => {
       setIsPulsing(true);
+      dispatch(storeActions.errors.clearError())
       try {
         const response = await toggleFavorite(id, isFavParam);
         if (response.success) {
@@ -43,7 +44,8 @@ const FavoriteButton = ({ movieId, isFav, nativeButton}) => {
           dispatch(storeActions.movies.setFavoriteMovies(favMovieList.results));
         }
       } catch (error) {
-        console.error("Error toggling favorite:", error);
+        console.log('Error', error.response.data)
+        dispatch(storeActions.errors.setError({status: error.response.status, message:'An error occurred while updating favorite movies.'}))
       }
       setIsPulsing(false);
     }

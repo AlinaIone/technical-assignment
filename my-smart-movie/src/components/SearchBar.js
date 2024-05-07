@@ -39,8 +39,8 @@ const SearchBar = () => {
       const response = await getWantedMovies(query);
       dispatch(storeActions.movies.setMovies(response.results));
 
-      if (window.location.pathname !== "/movies") {
-        navigate("/movies");
+      if (window.location.pathname !== "/") {
+        navigate("/");
       }
 
     } catch (error) {

@@ -3,59 +3,57 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import MovieDetails from "./pages/MovieDetails";
-import Login from "./pages/Login";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import DisplayError from "./pages/DisplayError";
 
 const theme = createTheme({
   root: {
-    backgroundColor: '#5c5c5e',
-    padding: '20px',
-    fontFamily: 'Arial, sans-serif',
-    height: '100%'
+    backgroundColor: "#5c5c5e",
+    padding: "20px",
+    fontFamily: "Arial, sans-serif",
+    height: "100%",
   },
   palette: {
-
     primary: {
-      main: /*' #697487'*/ '#5c8c9c',
-      dark: '#5c5c5e' 
+      main: "#6A9D90",
     },
     secondary: {
-      main: '#516077', // Pink color
+      main: "#736560",
     },
+    tertiary: {
+      main: "#416961",
+      lightBlue: " #3EA893",
+      powerGreen: "#1CE8BF",
+      orange: "#9e796c",
+    },
+
     background: {
-      default: '#6A9D90 ' /*#5b7c99 #5c8c9c*/      , // Cadet Blue
+      default: "#6A9D90",
     },
     text: {
-      light: '#e6e6fa', // Dark text color
-      dark: '#142733', // Light text color
+      light: "#e6e6fa",
+      dark: "#142733",
+      white: "#fff",
     },
-},
-typography: {
-  fontFamily: 'Roboto, sans-serif', // Default font family
-  h1: {
-    fontSize: '2.5rem', // Heading 1 font size
-    fontWeight: 'bold', // Heading 1 font weight
-    marginBottom: '1rem', // Heading 1 margin bottom
   },
-  body1: {
-    fontSize: '1rem', // Body text font size
-    lineHeight: 1.5, // Body text line height
+  typography: {
+    fontFamily: "Roboto, sans-serif",
+    h1: {
+      fontSize: "2.5rem",
+      fontWeight: "bold",
+      marginBottom: "1rem",
+    },
+    body1: {
+      fontSize: "1rem",
+      lineHeight: 1.5,
+    },
   },
-},
-sizes:{
-  container: {maxWidth:'1200px'}
-}
-})
+});
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/movies",
     element: <Workflow />,
-    // Add an error element
     children: [
       { index: true, element: <Home /> },
       {
@@ -68,10 +66,19 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <DisplayError />,
+  },
 ]);
 
 function App() {
-  return <ThemeProvider theme={theme}><CssBaseline/><RouterProvider router={router} /></ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
 
 export default App;
