@@ -1,7 +1,5 @@
   # My Smart Movie
- This project combines simplicity and beauty, harmonizing ReactJS and the [TMDB API](https://developer.themoviedb.org/docs/getting-started) to create an elegant movie browsing experience.
- Embark on a cinematic journey with ReactJS and the [TMDB API](https://developer.themoviedb.org/docs/getting-started), bringing you the latest in movies.
- Whether you're a movie enthusiast or just looking for your next favorite film, this application provides an intuitive platform to explore, discover, and enjoy movies effortlessly.
+  Whether you're a movie enthusiast or simply searching for your next favorite film, this application, powered by the [TMDB API]  (https://developer.themoviedb.org/docs/getting-started), provides an intuitive platform to explore, discover, and enjoy movies.
 
  ## Table of Contents
 * [Description](#description)
@@ -15,7 +13,7 @@
 
   **Key Features**
 
-  1. **Intuitive Search and Filtering:**
+  1. **Flexible Search and Filtering:**
       - Easily search for movies and filter them by genre, release year, and adult content.
       - Sort movies by popularity, title, and votes to find exactly what you're looking for.
       - Refine your search results to discover movies that match your preferences.
