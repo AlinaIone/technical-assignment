@@ -2,7 +2,7 @@ import React from "react";
 import Card from "@mui/material/Card";
 import { CardContent,  CardMedia, Typography,  Grid, CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { getMovieDetails } from "../services/apiRequests";
+import { getMovieDetails } from "../services/ApiRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { storeActions } from "../store/store";
 import { useMovieGenresHandling } from "../hooks/useMovieGenresHandling";

@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getFilteredMovies, getMovieList } from "../services/apiRequests";
+import { getFilteredMovies, getMovieList } from "../services/ApiRequests";
 import { storeActions } from "../store/store";
 
 const rootFilterStyle = {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { toggleFavorite, getFavoriteMovies } from "../services/apiRequests";
+import { toggleFavorite, getFavoriteMovies } from "../services/ApiRequests";
 import { useDispatch } from "react-redux";
 import { storeActions } from "../store/store";
 import { Button, CardActions, IconButton } from "@mui/material";

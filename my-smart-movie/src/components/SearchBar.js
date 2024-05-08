@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
-import { getMovieList, getWantedMovies } from "../services/apiRequests";
+import { getMovieList, getWantedMovies } from "../services/AypiRequests";
 import { useDispatch } from "react-redux";
 import { storeActions } from "../store/store";
 import { useNavigate } from "react-router-dom";

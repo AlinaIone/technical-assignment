@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { getConfiguration, getFavoriteMovies, getMovieGenre, getMovieList } from "./services/apiRequests";
+import { getConfiguration, getFavoriteMovies, getMovieGenre, getMovieList } from "./services/ApiRequests";
 import { useDispatch, useSelector } from "react-redux";
 import { storeActions } from "./store/store";
 import { useNavigation, Outlet } from "react-router-dom";

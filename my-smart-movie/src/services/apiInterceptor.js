@@ -7,7 +7,6 @@ const apiTMDB = axios.create({
 
 // Add a request interceptor to modify outgoing requests
 apiTMDB.interceptors.request.use(config => {
-  // Add your API key to the request headers
   config.params = {
     ...config.params,
     api_key: process.env.REACT_APP_API_KEY,
@@ -15,7 +14,6 @@ apiTMDB.interceptors.request.use(config => {
   return config;
 
 }, error => {
-  // Handle request error
   return Promise.reject(error);
 });
 
