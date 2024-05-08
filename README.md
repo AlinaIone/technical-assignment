@@ -1,5 +1,5 @@
   # My Smart Movie
-  Whether you're a movie enthusiast or simply searching for your next favorite film, this application, powered by the [TMDB API]  (https://developer.themoviedb.org/docs/getting-started), provides an intuitive platform to explore, discover, and enjoy movies.
+  Whether you're a movie enthusiast or simply searching for your next favorite film, this application, powered by the [TMDB API](https://developer.themoviedb.org/docs/getting-started), provides an intuitive platform to explore, discover, and enjoy movies.
 
  ## Table of Contents
 * [Description](#description)
